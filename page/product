@@ -1,0 +1,37 @@
+import { useRouter } from "next/router"
+
+export default function ProductPage() {
+  const router = useRouter()
+  const { id } = router.query
+
+  // Données fictives pour démonstration
+  const product = {
+    id,
+    title: "Seiko Mod Ocean Blue",
+    description:
+      "Une magnifique Seiko modifiée avec insert bleu, lunette céramique et mouvement NH35.",
+    price: 499,
+    image_url: "https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10",
+  }
+
+  if (!id) return <p className="p-6">Chargement...</p>
+
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      <img
+        src={product.image_url}
+        alt={product.title}
+        className="w-full h-72 object-cover rounded-2xl mb-4"
+      />
+      <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
+      <p className="text-gray-600 mb-3">{product.description}</p>
+      <p className="text-2xl font-bold mb-6">{product.price} €</p>
+      <button
+        onClick={() => alert('Ajouté au panier !')}
+        className="bg-black text-white px-6 py-2 rounded-xl hover:bg-gray-800"
+      >
+        Ajouter au panier
+      </button>
+    </div>
+  )
+}
